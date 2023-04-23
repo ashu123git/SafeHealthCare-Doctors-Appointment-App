@@ -1,9 +1,18 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Homepage from "./screens/Homepage";
+import Login from "./screens/Login";
+import SignUp from "./screens/SignUp";
+
 function App() {
   return (
     <>
-    <div className="bg-dark">
-      <h1 className="text-success">Hello</h1>
-    </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
