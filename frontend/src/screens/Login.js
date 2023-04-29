@@ -1,10 +1,32 @@
 import React from "react";
-import { Form, Input } from "antd";
-import { Link } from "react-router-dom";
+import { Form, Input, message } from "antd";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const handleFinish = (values) => {
-    console.log(values);
+  const navigate = useNavigate();
+  const handleFinish = async (values) => {
+    // console.log(values);
+    try {
+      const validCreds = await axios.post(
+        "http://localhost:5000/api/v1/user/login",
+        values
+      );
+      console.log(validCreds);
+
+      // const jsonData = validCreds.json();
+      // console.log(jsonData);
+      if (validCreds.data.success) {
+        localStorage.setItem("authToken", validCreds.data.authToken);
+        message.success(validCreds.data.message);
+        navigate("/");
+      } else {
+        message.error(validCreds.data.message);
+      }
+    } catch (error) {
+      console.log("Some Error");
+      message.error("Something went wrong");
+    }
   };
   return (
     <>
