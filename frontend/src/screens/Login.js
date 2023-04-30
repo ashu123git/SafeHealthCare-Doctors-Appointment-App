@@ -2,17 +2,25 @@ import React from "react";
 import { Form, Input, message } from "antd";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+// useDispatch is used so that it can dispatch our reducers that we create in redux folder
+import { useDispatch } from "react-redux";
+import { showLoading, hideLoading } from "../redux/features/alertSlice";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleFinish = async (values) => {
     // console.log(values);
     try {
+      // To show spinning wheel
+      dispatch(showLoading());
       const validCreds = await axios.post(
         "http://localhost:5000/api/v1/user/login",
         values
       );
-      console.log(validCreds);
+      // To hide spinning wheel
+      dispatch(hideLoading());
+      // console.log(validCreds);
 
       // const jsonData = validCreds.json();
       // console.log(jsonData);
@@ -24,6 +32,7 @@ const Login = () => {
         message.error(validCreds.data.message);
       }
     } catch (error) {
+      dispatch(hideLoading());
       console.log("Some Error");
       message.error("Something went wrong");
     }

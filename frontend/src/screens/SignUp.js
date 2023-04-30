@@ -1,9 +1,12 @@
 import { React, useState } from "react";
 import { message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { showLoading, hideLoading } from "../redux/features/alertSlice";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [credentials, setCredentials] = useState({
     name: "",
@@ -15,6 +18,7 @@ const SignUp = () => {
     event.preventDefault();
     // console.log(credentials);
     try {
+      dispatch(showLoading());
       const response = await fetch("http://localhost:5000/api/v1/user/signup", {
         method: "POST",
         headers: {
@@ -26,6 +30,7 @@ const SignUp = () => {
           password: credentials.password,
         }),
       });
+      dispatch(hideLoading());
 
       const jsonVal = await response.json();
       // console.log(jsonVal);
@@ -36,6 +41,7 @@ const SignUp = () => {
         message.error(jsonVal.message);
       }
     } catch (error) {
+      dispatch(hideLoading());
       console.log(error);
       message.error("Something went wrong");
     }
