@@ -1,7 +1,10 @@
+// This usercontroller is used for multiple routes that are used in routes folder.
+
 const userModel = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+// Sign-Up Route
 const signupController = async (req, res) => {
   //   console.log(req.body);
   //   console.log(req);
@@ -29,6 +32,8 @@ const signupController = async (req, res) => {
     res.status(500).json({ success: false, message: `${error.message}` });
   }
 };
+
+// Login Controller
 const loginController = async (req, res) => {
   try {
     const userValid = await userModel.findOne({ email: req.body.email });
@@ -48,6 +53,7 @@ const loginController = async (req, res) => {
         .status(200)
         .send({ success: false, message: "Enter Valid password" });
     }
+    // For maintaining session and authorization
     const authToken = jwt.sign({ id: userValid._id }, process.env.SECRET, {
       expiresIn: "1d",
     });
@@ -58,4 +64,33 @@ const loginController = async (req, res) => {
   }
 };
 
-module.exports = { loginController, signupController };
+// Authorization controller.
+// This will check whether a user exists in the database with the provided auth token.
+const authController = async (req, res) => {
+  // console.log(req.body);
+  try {
+    const userFind = await userModel.findById({ _id: req.body.userId });
+    // console.log(userFind);
+    if (!userFind) {
+      res.status(200).send({
+        message: "User not found",
+        success: false,
+      });
+    } else {
+      res.status(200).send({
+        message: "Success",
+        data: {
+          name: userFind.name,
+          email: userFind.email,
+        },
+      });
+    }
+  } catch (error) {
+    res.status(500).send({
+      message: "Some Error",
+      success: false,
+    });
+  }
+};
+
+module.exports = { loginController, signupController, authController };
