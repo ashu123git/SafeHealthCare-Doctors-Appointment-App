@@ -70,3 +70,24 @@
 .active i {
   color: rgb(122, 115, 115);
 }
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 50px;
+  margin: 0 15px;
+}
+
+.header-content a {
+  text-decoration: none;
+  font-size: 1.5rem;
+  margin: 0 10px;
+  text-transform: uppercase;
+  color: rgb(34, 145, 236);
+}
+
+.header-content i {
+  margin-right: 15px;
+  font-size: 1.5rem;
+}

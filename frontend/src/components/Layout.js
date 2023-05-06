@@ -1,12 +1,29 @@
 // Layout page to show the basic layout of homepage and mnay other pages
 import React from "react";
 import "../styles/homeStyles.css";
-import { SidebarMenu } from "../Data/sideData";
+import { adminMenu, userMenu } from "../Data/sideData";
 import { Link, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { message } from "antd";
+import { setUser } from "../redux/features/userSlice";
 
 const Layout = ({ children }) => {
+  const dispatch = useDispatch();
   // Uselocation is used so that wwhen we click on any menu item on sidebar, then it's style will change
   const location = useLocation();
+  // Current state of user
+  const { user } = useSelector((state) => state.user);
+
+  const handleClick = () => {
+    localStorage.removeItem("authToken");
+    dispatch(setUser("default"));
+    message.success("Logged Out Successfully");
+  };
+  // console.log(user);
+  // if (user) {
+  const currMenu = user.isAdmin ? adminMenu : userMenu; // To show the menus corresponding to user
+  // }
+
   return (
     <>
       <div className="main">
@@ -17,7 +34,7 @@ const Layout = ({ children }) => {
               <hr />
             </div>
             <div className="menu">
-              {SidebarMenu.map((menus) => {
+              {currMenu.map((menus) => {
                 const isActive = location.pathname === menus.path;
                 return (
                   <>
@@ -28,10 +45,19 @@ const Layout = ({ children }) => {
                   </>
                 );
               })}
+              <div className={"menu-item"} onClick={handleClick}>
+                <i className="fa-solid fa-right-from-bracket" />
+                <Link to="/login">Logout</Link>
+              </div>
             </div>
           </div>
           <div className="content">
-            <div className="header">Header</div>
+            <div className="header">
+              <div className="header-content">
+                <i className="fa-sharp fa-solid fa-bell"></i>
+                <Link to="/profile">{user.name} </Link>
+              </div>
+            </div>
             <div className="body">{children}</div>
           </div>
         </div>

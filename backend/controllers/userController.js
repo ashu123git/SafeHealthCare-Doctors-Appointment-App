@@ -77,11 +77,17 @@ const authController = async (req, res) => {
         success: false,
       });
     } else {
+      // console.log("Found");
       res.status(200).send({
         message: "Success",
+        success: true,
         data: {
           name: userFind.name,
           email: userFind.email,
+          isAdmin: userFind.isAdmin,
+          isDoctor: userFind.isDoctor,
+          notification: userFind.notification,
+          seenNoti: userFind.seenNoti,
         },
       });
     }
