@@ -1,6 +1,7 @@
 // This usercontroller is used for multiple routes that are used in routes folder.
 
 const userModel = require("../models/User");
+const doctorModel = require("../models/Doctor");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -99,4 +100,39 @@ const authController = async (req, res) => {
   }
 };
 
-module.exports = { loginController, signupController, authController };
+//Apply Doctor Controller
+const applyDoctorController = async (req, res) => {
+  try {
+    const newDoctor = await doctorModel({ ...req.body, status: "pending" });
+    await newDoctor.save();
+    const adminUser = await userModel.findOne({ isAdmin: true });
+    const notification = adminUser.notification;
+    notification.push({
+      type: "Apply Doctor Request",
+      message: `${newDoctor.firstname} ${newDoctor.lastname} has applied for doctor.`,
+      data: {
+        doctorId: newDoctor._id,
+        name: newDoctor.firstname + " " + newDoctor.lastname,
+        onClickPath: "/admin/doctors",
+      },
+    });
+    await userModel.findByIdAndUpdate(adminUser._id, { notification });
+    res.status(200).send({
+      success: true,
+      message: "Doctor account applied successfully.",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: "Error while applying for doctor",
+      success: false,
+    });
+  }
+};
+
+module.exports = {
+  loginController,
+  signupController,
+  authController,
+  applyDoctorController,
+};

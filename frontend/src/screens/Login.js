@@ -18,6 +18,7 @@ const Login = () => {
         "http://localhost:5000/api/v1/user/login",
         values
       );
+      window.location.reload();
       // To hide spinning wheel
       dispatch(hideLoading());
       // console.log(validCreds);
