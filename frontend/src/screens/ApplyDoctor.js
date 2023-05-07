@@ -1,3 +1,5 @@
+// Page from where users can apply for doctor. Admin will approve
+
 import React from "react";
 import Layout from "../components/Layout";
 import { Button, Col, Form, Input, Row, TimePicker, message } from "antd";

@@ -20,8 +20,9 @@ const Layout = ({ children }) => {
     message.success("Logged Out Successfully");
   };
 
+  // For notification count
   let len;
-  if (user == "default" || user == null) console.log("Yes");
+  if (user == "default" || user == null) console.log("");
   else {
     len = user.notification.length;
     // console.log(len);
@@ -62,9 +63,11 @@ const Layout = ({ children }) => {
           <div className="content">
             <div className="header">
               <div className="header-content">
-                <Badge count={len}>
-                  <i className="fa-sharp fa-solid fa-bell"></i>
-                </Badge>
+                <Link to="/notification">
+                  <Badge count={len}>
+                    <i className="fa-sharp fa-solid fa-bell"></i>
+                  </Badge>
+                </Link>
                 <Link to="/profile">{user.name} </Link>
               </div>
             </div>
