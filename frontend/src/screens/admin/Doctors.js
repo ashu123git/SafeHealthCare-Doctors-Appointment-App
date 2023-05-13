@@ -1,9 +1,9 @@
-// This if for showing the current list of doctors with their status (pending/approved/rejected)
+// This is for showing the current list of doctors with their status (pending/approved/rejected)
 
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import axios from "axios";
-import { Table } from "antd";
+import { Table, message } from "antd";
 
 const Doctors = () => {
   //Getting the initial and final state of doctors
@@ -33,6 +33,29 @@ const Doctors = () => {
     getDoctors();
   }, []);
 
+  const handleClick = async (record, status) => {
+    // console.log(record.userId);
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/v1/admin/changeStatus",
+        { doctorId: record._id, userId: record.userId, status: status },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          },
+        }
+      );
+
+      if (res.data.success) {
+        message.success(res.data.message);
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+      message.error("Something went wrong");
+    }
+  };
+
   // Using ant-d table feature to show the data in a form of tables
   const columns = [
     {
@@ -58,7 +81,14 @@ const Doctors = () => {
       render: (text, record) => (
         <div className="d-flex">
           {record.status === "pending" ? (
-            <button className="btn btn-success">Approve</button>
+            <button
+              className="btn btn-success"
+              onClick={() => {
+                handleClick(record, "approved");
+              }}
+            >
+              Approve
+            </button>
           ) : (
             <button className="btn btn-danger">Reject</button>
           )}

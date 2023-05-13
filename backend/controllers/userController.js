@@ -104,6 +104,7 @@ const authController = async (req, res) => {
 // Getting details of doctor, saving them in database and giving push notification to admin.
 const applyDoctorController = async (req, res) => {
   try {
+    // console.log(req.body);
     const newDoctor = await doctorModel({ ...req.body, status: "pending" });
     await newDoctor.save();
     const adminUser = await userModel.findOne({ isAdmin: true });

@@ -78,19 +78,20 @@ const NotificationPage = () => {
       <Tabs>
         <Tabs.TabPane tab="Un Read" key={0}>
           <div className="d-flex justify-content-end">
-            <h4
-              className="p-2"
+            <button
+              className="p-2 btn btn-success m-3"
               onClick={handleMarkRead}
               style={{ cursor: "pointer" }}
             >
               Mark all as Read
-            </h4>
+            </button>
           </div>
           {user != "default" // Getting all the notifications
             ? user.notification.map((notificationMsg) => (
                 <div
                   className="card"
                   onClick={() => navigate(notificationMsg.data.onClickPath)}
+                  style={{ cursor: "pointer" }}
                 >
                   {/* <Link to={notificationMsg.data.onClickPath}> */}
                   <div className="card-text">{notificationMsg.message}</div>
@@ -101,13 +102,13 @@ const NotificationPage = () => {
         </Tabs.TabPane>
         <Tabs.TabPane tab="Read" key={1}>
           <div className="d-flex justify-content-end">
-            <h4
-              className="p-2"
+            <button
+              className="p-2 btn btn-danger m-3"
               onClick={handleDelete}
               style={{ cursor: "pointer" }}
             >
               Delete all read
-            </h4>
+            </button>
           </div>
           {user != "default"
             ? user.seenNoti.map((notificationMsg) => (

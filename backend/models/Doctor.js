@@ -1,7 +1,12 @@
 const mongoose = require("mongoose");
 
+// In 7th line, userId is used so that we can send the notification to user when status of doctor gets approved
+
 const doctorSchema = new mongoose.Schema(
   {
+    userId: {
+      type: String,
+    },
     firstname: {
       type: String,
       required: [true, "first name is required"],

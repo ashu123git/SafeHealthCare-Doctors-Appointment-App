@@ -16,7 +16,7 @@ module.exports = async (req, res, next) => {
           success: false,
         });
       } else {
-        // console.log("Not failed");
+        // console.log(decode.id);
         req.body.userId = decode.id;
         next();
       }
