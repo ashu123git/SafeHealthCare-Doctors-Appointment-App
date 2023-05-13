@@ -21,15 +21,42 @@ const Layout = ({ children }) => {
 
   // For notification count
   let len;
+  let identity;
   if (user == "default" || user == null) console.log("");
   else {
     len = user.notification.length;
-    // console.log(len);
+    identity = user.id; // To open doctor's profile dynamically according to their unique id
+    // console.log(identity);
   }
-  // const len = user.notification.length;
   // console.log(user);
   // if (user) {
-  const currMenu = user.isAdmin ? adminMenu : userMenu; // To show the menus corresponding to user
+
+  // ================== Doctor Menu ====================
+  const doctorMenu = [
+    {
+      name: "Home",
+      icon: "fa-solid fa-house-chimney",
+      path: "/",
+    },
+    {
+      name: "Appointments",
+      icon: "fa-solid fa-calendar-check",
+      path: "/appointments",
+    },
+    {
+      name: "Profile",
+      icon: "fa-solid fa-user",
+      path: `/doctor/profile/${identity}`,
+    },
+  ];
+
+  // ================== Doctor Menu ====================
+
+  const currMenu = user.isAdmin
+    ? adminMenu
+    : user?.isDoctor
+    ? doctorMenu
+    : userMenu; // To show the menus corresponding to user
   // }
 
   return (

@@ -84,6 +84,7 @@ const authController = async (req, res) => {
         success: true,
         data: {
           name: userFind.name,
+          id: userFind._id,
           email: userFind.email,
           isAdmin: userFind.isAdmin,
           isDoctor: userFind.isDoctor,
