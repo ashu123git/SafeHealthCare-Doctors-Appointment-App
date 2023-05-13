@@ -8,8 +8,7 @@ import { Badge, message } from "antd";
 import { setUser } from "../redux/features/userSlice";
 
 const Layout = ({ children }) => {
-  const dispatch = useDispatch();
-  // Uselocation is used so that wwhen we click on any menu item on sidebar, then it's style will change
+  // Uselocation is used so that when we click on any menu item on sidebar, then it's style will change
   const location = useLocation();
   // Current state of user
   const { user } = useSelector((state) => state.user);
