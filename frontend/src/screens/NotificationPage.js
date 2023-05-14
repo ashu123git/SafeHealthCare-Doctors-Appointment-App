@@ -86,8 +86,11 @@ const NotificationPage = () => {
               Mark all as Read
             </button>
           </div>
-          {user != "default" // Getting all the notifications
-            ? user.notification.map((notificationMsg) => (
+          {user != "default" ? ( // Getting all the notifications
+            user.notification.length == 0 ? (
+              <h6 className="text-center">Inbox is empty.</h6>
+            ) : (
+              user.notification.map((notificationMsg) => (
                 <div
                   className="card"
                   onClick={() => navigate(notificationMsg.data.onClickPath)}
@@ -98,7 +101,8 @@ const NotificationPage = () => {
                   {/* </Link> */}
                 </div>
               ))
-            : null}
+            )
+          ) : null}
         </Tabs.TabPane>
         <Tabs.TabPane tab="Read" key={1}>
           <div className="d-flex justify-content-end">
@@ -110,8 +114,11 @@ const NotificationPage = () => {
               Delete all read
             </button>
           </div>
-          {user != "default"
-            ? user.seenNoti.map((notificationMsg) => (
+          {user != "default" ? (
+            user.seenNoti.length == 0 ? (
+              <h6 className="text-center">No Read Messages</h6>
+            ) : (
+              user.seenNoti.map((notificationMsg) => (
                 <div
                   className="card"
                   onClick={() => navigate(notificationMsg.data.onClickPath)}
@@ -121,7 +128,8 @@ const NotificationPage = () => {
                   {/* </Link> */}
                 </div>
               ))
-            : null}
+            )
+          ) : null}
         </Tabs.TabPane>
       </Tabs>
     </Layout>

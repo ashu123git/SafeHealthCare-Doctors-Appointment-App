@@ -1,7 +1,6 @@
 // Controller for doctor to get doctor profile and also to update the profile
 
 const doctorModel = require("../models/Doctor");
-const userModel = require("../models/User");
 
 // Get current doctor profile
 const getProfileController = async (req, res) => {

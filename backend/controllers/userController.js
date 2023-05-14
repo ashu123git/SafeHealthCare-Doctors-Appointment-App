@@ -181,6 +181,42 @@ const deleteNotificationController = async (req, res) => {
   }
 };
 
+//Get Doctor List Controller
+const getDocListController = async (req, res) => {
+  try {
+    const docForUser = await doctorModel.find({ status: "approved" });
+    res.status(200).send({
+      success: true,
+      message: "Doctor details found",
+      data: docForUser,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while getting doctors list",
+    });
+  }
+};
+
+// Get info for doctor when user clicks for booking the appointment with that doctor
+const getDocInfoController = async (req, res) => {
+  try {
+    const doc1 = await doctorModel.findOne({ _id: req.body.doctorId });
+    res.status(200).send({
+      success: true,
+      message: "Doctor details found successfully",
+      data: doc1,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while getting sing doctor information",
+    });
+  }
+};
+
 module.exports = {
   loginController,
   signupController,
@@ -188,4 +224,6 @@ module.exports = {
   applyDoctorController,
   getNotificationController,
   deleteNotificationController,
+  getDocListController,
+  getDocInfoController,
 };
