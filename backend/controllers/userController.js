@@ -283,6 +283,24 @@ const checkAvailabitiliController = async (req, res) => {
   }
 };
 
+// Get list of all appointments made by the user.
+const getAppointController = async (req, res) => {
+  try {
+    const currData = await appointmentModel.find({ userId: req.body.userId });
+    res.status(200).send({
+      success: true,
+      message: "Appoinment list fetched successfully",
+      data: currData,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while getting appointment list",
+    });
+  }
+};
+
 module.exports = {
   loginController,
   signupController,
@@ -294,4 +312,5 @@ module.exports = {
   getDocInfoController,
   bookingController,
   checkAvailabitiliController,
+  getAppointController,
 };

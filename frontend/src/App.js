@@ -13,6 +13,7 @@ import Users from "./screens/admin/Users";
 import Doctors from "./screens/admin/Doctors";
 import Profile from "./screens/doctor/Profile";
 import BookingPage from "./screens/BookingPage";
+import Appointments from "./screens/Appointments";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -36,6 +37,14 @@ function App() {
               element={
                 <ProtectedRoutes>
                   <ApplyDoctor />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/appointments"
+              element={
+                <ProtectedRoutes>
+                  <Appointments />
                 </ProtectedRoutes>
               }
             />
