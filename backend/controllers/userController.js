@@ -2,6 +2,7 @@
 
 const userModel = require("../models/User");
 const doctorModel = require("../models/Doctor");
+const appointmentModel = require("../models/Appointment");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -217,6 +218,71 @@ const getDocInfoController = async (req, res) => {
   }
 };
 
+// When user clicks on Book Now on Booking page, this controller will book the appointment.
+const bookingController = async (req, res) => {
+  try {
+    // Check whether doctor is available or not
+    const doctorr = await doctorModel.findOne({ _id: req.body.doctorId });
+    if (!doctorr.isAvailable) {
+      res.status(200).send({
+        success: true,
+        message: "Cannot book this aapointment now.",
+      });
+    } else {
+      doctorr.isAvailable = false;
+      doctorr.save();
+      req.body.status = "pending";
+      const appointment = new appointmentModel(req.body);
+      await appointment.save();
+      const currUsser = await userModel.findOne({
+        _id: req.body.doctorInfo.userId,
+      });
+      const notification = currUsser.notification;
+      notification.push({
+        type: `New Appointment request`,
+        message: `New appointment with ${req.body.userInfo.name}`,
+        onClickPath: "/user/appointments",
+      });
+      currUsser.save();
+      res.status(200).send({
+        success: true,
+        message: "Appointment booked successfully",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while booking apointmnet",
+    });
+  }
+};
+
+// To check whether a doctor is available or not.
+const checkAvailabitiliController = async (req, res) => {
+  try {
+    const doc = await doctorModel.findOne({ _id: req.body.doctorId });
+    if (doc.isAvailable) {
+      res.status(200).send({
+        success: true,
+        message: "Doctor is Available. Go ahead and book your appointment.",
+      });
+    } else {
+      res.status(200).send({
+        success: true,
+        message:
+          "This Doctor is not available at the moment. Please check any other doctor or try again after some time.",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while checking availability",
+    });
+  }
+};
+
 module.exports = {
   loginController,
   signupController,
@@ -226,4 +292,6 @@ module.exports = {
   deleteNotificationController,
   getDocListController,
   getDocInfoController,
+  bookingController,
+  checkAvailabitiliController,
 };

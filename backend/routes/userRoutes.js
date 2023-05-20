@@ -8,6 +8,8 @@ const {
   deleteNotificationController,
   getDocListController,
   getDocInfoController,
+  bookingController,
+  checkAvailabitiliController,
 } = require("../controllers/userController");
 const authMiddleware = require("../middleware/authMiddleware");
 
@@ -38,7 +40,13 @@ router.post(
 // Get doctors list at homepage
 router.get("/getDocList", authMiddleware, getDocListController);
 
-// Book an appointment with doctor
+// Book doctor information for booking an appointment with doctor
 router.post("/getSingleDocInfo", authMiddleware, getDocInfoController);
+
+// Book appointment with doctor
+router.post("/booking", authMiddleware, bookingController);
+
+// Check availability whether a doctor is available or not
+router.post("/checkAvailability", authMiddleware, checkAvailabitiliController);
 
 module.exports = router;

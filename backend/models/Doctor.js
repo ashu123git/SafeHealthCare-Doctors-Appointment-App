@@ -50,6 +50,10 @@ const doctorSchema = new mongoose.Schema(
       type: Object,
       required: [true, "work timings is required"],
     },
+    isAvailable: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );

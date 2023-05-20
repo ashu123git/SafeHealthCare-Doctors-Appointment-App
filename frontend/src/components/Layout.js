@@ -5,7 +5,6 @@ import { adminMenu, userMenu } from "../Data/sideData";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Badge, message } from "antd";
-import { setUser } from "../redux/features/userSlice";
 
 const Layout = ({ children }) => {
   // Uselocation is used so that when we click on any menu item on sidebar, then it's style will change
