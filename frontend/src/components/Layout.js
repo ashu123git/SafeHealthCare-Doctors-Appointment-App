@@ -40,7 +40,7 @@ const Layout = ({ children }) => {
     {
       name: "Appointments",
       icon: "fa-solid fa-calendar-check",
-      path: "/appointments",
+      path: "/doctor-appointments",
     },
     {
       name: "Profile",
