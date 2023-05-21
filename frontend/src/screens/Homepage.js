@@ -13,7 +13,7 @@ const Homepage = () => {
   const getUserData = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/v1/user/getDocList",
+        "https://safe-health-care.onrender.com/api/v1/user/getDocList",
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("authToken"),

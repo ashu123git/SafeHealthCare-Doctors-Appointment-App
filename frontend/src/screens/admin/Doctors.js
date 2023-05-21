@@ -12,7 +12,7 @@ const Doctors = () => {
   const getDoctors = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/v1/admin/getDoctorList",
+        "https://safe-health-care.onrender.com/api/v1/admin/getDoctorList",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("authToken")}`,
@@ -37,7 +37,7 @@ const Doctors = () => {
     // console.log(record.userId);
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/v1/admin/changeStatus",
+        "https://safe-health-care.onrender.com/api/v1/admin/changeStatus",
         { doctorId: record._id, userId: record.userId, status: status },
         {
           headers: {

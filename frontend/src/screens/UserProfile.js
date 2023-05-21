@@ -23,7 +23,7 @@ const UserProfile = () => {
     try {
       //   console.log("Running try");
       const res = await axios.post(
-        "http://localhost:5000/api/v1/user/getUserProfile",
+        "https://safe-health-care.onrender.com/api/v1/user/getUserProfile",
         {
           userId: user._id,
         },
@@ -54,7 +54,7 @@ const UserProfile = () => {
     try {
       dispatch(showLoading());
       const res = await axios.post(
-        "http://localhost:5000/api/v1/user/updateProfile",
+        "https://safe-health-care.onrender.com/api/v1/user/updateProfile",
         { ...values, userId: user._id },
         {
           headers: {

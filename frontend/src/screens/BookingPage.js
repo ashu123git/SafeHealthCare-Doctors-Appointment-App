@@ -16,7 +16,7 @@ const BookingPage = () => {
   const getDocData = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/v1/user/getSingleDocInfo",
+        "https://safe-health-care.onrender.com/api/v1/user/getSingleDocInfo",
         { doctorId: params.doctorId },
         {
           headers: {
@@ -39,7 +39,7 @@ const BookingPage = () => {
     try {
       dispatch(showLoading());
       const res = await axios.post(
-        "http://localhost:5000/api/v1/user/booking",
+        "https://safe-health-care.onrender.com/api/v1/user/booking",
         {
           doctorId: params.doctorId,
           userId: user._id,
@@ -66,7 +66,7 @@ const BookingPage = () => {
   const handleCheck = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/v1/user/checkAvailability",
+        "https://safe-health-care.onrender.com/api/v1/user/checkAvailability",
         { doctorId: params.doctorId },
         {
           headers: {

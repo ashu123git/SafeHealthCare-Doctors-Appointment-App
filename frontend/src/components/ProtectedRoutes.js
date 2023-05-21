@@ -16,7 +16,7 @@ export default function ProtectedRoutes({ children }) {
     try {
       dispatch(showLoading);
       const res = await axios.post(
-        "http://localhost:5000/api/v1/user/userData",
+        "https://safe-health-care.onrender.com/api/v1/user/userData",
         {
           authToken: localStorage.getItem("authToken"),
         },
