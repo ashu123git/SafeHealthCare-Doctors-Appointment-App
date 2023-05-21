@@ -41,7 +41,7 @@ const Login = () => {
   };
   return (
     <>
-      <div className="form-container">
+      <div className="container-sm m-3 w-29">
         <Form layout="vertical" onFinish={handleFinish}>
           <Form.Item label="Email" name="email">
             <Input type="email" required />

@@ -11,6 +11,8 @@ const {
   bookingController,
   checkAvailabitiliController,
   getAppointController,
+  getUserProController,
+  updateUserController,
 } = require("../controllers/userController");
 const authMiddleware = require("../middleware/authMiddleware");
 
@@ -52,5 +54,11 @@ router.post("/checkAvailability", authMiddleware, checkAvailabitiliController);
 
 // Get all appointment lists
 router.get("/appointmentHistory", authMiddleware, getAppointController);
+
+// Get and update current user's profile.
+router.post("/getUserProfile", authMiddleware, getUserProController);
+
+// Update user's profile
+router.post("/updateProfile", authMiddleware, updateUserController);
 
 module.exports = router;

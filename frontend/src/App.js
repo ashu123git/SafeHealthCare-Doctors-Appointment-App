@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./screens/Homepage";
 import Login from "./screens/Login";
-import SignUp from "./screens/SignUp";
 // Whatever state we will create in redux, we will have to use it in App.js with the help of useSelector hook
 import { useSelector } from "react-redux";
 import Spinner from "./components/spinner";
@@ -15,6 +14,9 @@ import Profile from "./screens/doctor/Profile";
 import BookingPage from "./screens/BookingPage";
 import Appointments from "./screens/Appointments";
 import AppointmentList from "./screens/doctor/AppointmentList";
+import AdminProfile from "./screens/admin/AdminProfile";
+import UserProfile from "./screens/UserProfile";
+import SignUpp from "./screens/SignUpp";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -74,6 +76,22 @@ function App() {
               }
             />
             <Route
+              path="/user/profile"
+              element={
+                <ProtectedRoutes>
+                  <UserProfile />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/admin/profile"
+              element={
+                <ProtectedRoutes>
+                  <AdminProfile />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
               path="/doctor-appointments"
               element={
                 <ProtectedRoutes>
@@ -109,7 +127,7 @@ function App() {
               path="/signup"
               element={
                 <PublicRoutes>
-                  <SignUp />
+                  <SignUpp />
                 </PublicRoutes>
               }
             />

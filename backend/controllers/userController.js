@@ -301,6 +301,51 @@ const getAppointController = async (req, res) => {
   }
 };
 
+// Get current user profile
+const getUserProController = async (req, res) => {
+  // console.log("Reached");
+  try {
+    const checkUser = await userModel.findOne({ _id: req.body.userId });
+    // console.log(checkDoctor);
+    if (checkUser) {
+      res.status(200).send({
+        success: true,
+        message: "User Found successfully",
+        data: checkUser,
+      });
+    } else {
+      console.log("No user found");
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error occured while finding user",
+    });
+  }
+};
+
+// Update current user profile
+const updateUserController = async (req, res) => {
+  try {
+    // console.log(req.body.userId);
+    const user1 = await userModel.findOneAndUpdate(
+      { _id: req.body.userId },
+      req.body
+    );
+    res.status(200).send({
+      success: true,
+      message: "Successfully update profile",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while updating user's profile",
+    });
+  }
+};
+
 module.exports = {
   loginController,
   signupController,
@@ -313,4 +358,6 @@ module.exports = {
   bookingController,
   checkAvailabitiliController,
   getAppointController,
+  getUserProController,
+  updateUserController,
 };

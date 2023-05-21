@@ -35,11 +35,11 @@ const Appointments = () => {
   // Ant design table feature
   const columns = [
     {
-      title: "ID",
+      title: "Appointment ID",
       dataIndex: "_id",
     },
     {
-      title: "Name",
+      title: "Doctor Name",
       dataIndex: "name",
       render: (text, record) => (
         <span>

@@ -93,7 +93,13 @@ const Layout = ({ children }) => {
                     <i className="fa-sharp fa-solid fa-bell"></i>
                   </Badge>
                 </Link>
-                <Link to="/profile">{user.name} </Link>
+                {user.isAdmin ? (
+                  <Link to="/admin/profile">{user.name}</Link>
+                ) : user.isDoctor ? (
+                  <Link to="/profile">{user.name} </Link>
+                ) : (
+                  <Link to="/user/profile">{user.name} </Link>
+                )}
               </div>
             </div>
             <div className="body">{children}</div>

@@ -80,7 +80,7 @@ const Doctors = () => {
       dataIndex: "action",
       render: (text, record) => (
         <div className="d-flex">
-          {record.status === "pending" ? (
+          {record.status != "approved" ? (
             <button
               className="btn btn-success"
               onClick={() => {
@@ -90,7 +90,12 @@ const Doctors = () => {
               Approve
             </button>
           ) : (
-            <button className="btn btn-danger">Reject</button>
+            <button
+              className="btn btn-danger"
+              onClick={() => handleClick(record, "rejected")}
+            >
+              Reject
+            </button>
           )}
         </div>
       ),
