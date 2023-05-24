@@ -18,7 +18,7 @@ const Login = () => {
         "https://safe-health-care.onrender.com/api/v1/user/login",
         values
       );
-      // window.location.reload();
+      window.location.reload();
       // To hide spinning wheel
       dispatch(hideLoading());
       // console.log(validCreds);
@@ -26,7 +26,7 @@ const Login = () => {
       // const jsonData = validCreds.json();
       // console.log(jsonData);
       if (validCreds.data.success) {
-        window.location.reload(true);
+        // window.location.reload(true);
         localStorage.setItem("authToken", validCreds.data.authToken);
         message.success(validCreds.data.message);
         navigate("/");
