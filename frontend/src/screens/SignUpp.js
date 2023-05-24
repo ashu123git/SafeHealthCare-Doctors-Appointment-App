@@ -43,7 +43,7 @@ const SignUpp = () => {
           <button className="btn btn-primary" type="submit">
             Submit
           </button>
-          <Link to="/signup" className="m-3 mx-1 btn btn-danger">
+          <Link to="/login" className="m-3 mx-1 btn btn-danger">
             Already a User?
           </Link>
         </Form>
