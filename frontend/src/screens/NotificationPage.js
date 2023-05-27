@@ -18,7 +18,8 @@ const NotificationPage = () => {
     try {
       dispatch(showLoading());
       const res = await axios.post(
-        "https://safe-health-care.onrender.com/api/v1/user/getNotification",
+        "http://localhost:5000/api/v1/user/getNotification",
+        // "https://safe-health-care.onrender.com/api/v1/user/getNotification",
         { userId: user._id },
         {
           headers: {
@@ -46,7 +47,8 @@ const NotificationPage = () => {
     try {
       dispatch(showLoading());
       const res = await axios.post(
-        "https://safe-health-care.onrender.com/api/v1/user/deleteNotification",
+        "http://localhost:5000/api/v1/user/deleteNotification",
+        // "https://safe-health-care.onrender.com/api/v1/user/deleteNotification",
         { userId: user._id },
         {
           headers: {

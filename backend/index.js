@@ -12,7 +12,8 @@ const app = express();
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "https://safehealthcare.netlify.app"
+    "http://localhost:3000"
+    // "https://safehealthcare.netlify.app"
   );
   res.header(
     "Access-Control-Allow-Headers",

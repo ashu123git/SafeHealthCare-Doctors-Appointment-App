@@ -11,7 +11,8 @@ const Users = () => {
   const getUsers = async () => {
     try {
       const res = await axios.get(
-        "https://safe-health-care.onrender.com/api/v1/admin/getUsersList",
+        "http://localhost:5000/api/v1/admin/getUsersList",
+        // "https://safe-health-care.onrender.com/api/v1/admin/getUsersList",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("authToken")}`,

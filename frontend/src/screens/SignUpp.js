@@ -12,7 +12,8 @@ const SignUpp = () => {
     try {
       dispatch(showLoading());
       const res = await axios.post(
-        "https://safe-health-care.onrender.com/api/v1/user/signup",
+        "http://localhost:5000/api/v1/user/signup",
+        // "https://safe-health-care.onrender.com/api/v1/user/signup",
         values
       );
       dispatch(hideLoading());

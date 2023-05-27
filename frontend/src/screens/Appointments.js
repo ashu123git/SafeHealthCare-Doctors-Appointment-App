@@ -12,7 +12,8 @@ const Appointments = () => {
   const getAppointment = async () => {
     try {
       const res = await axios.get(
-        "https://safe-health-care.onrender.com/api/v1/user/appointmentHistory",
+        "http://localhost:5000/api/v1/user/appointmentHistory",
+        // "https://safe-health-care.onrender.com/api/v1/user/appointmentHistory",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("authToken")}`,

@@ -14,7 +14,8 @@ const AppointmentList = () => {
   const getAppointmentList = async () => {
     try {
       const res = await axios.get(
-        "https://safe-health-care.onrender.com/api/v1/doctor/appointment",
+        "http://localhost:5000/api/v1/doctor/appointment",
+        // "https://safe-health-care.onrender.com/api/v1/doctor/appointment",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("authToken")}`,
@@ -34,7 +35,8 @@ const AppointmentList = () => {
     try {
       dispatch(showLoading());
       const res = await axios.post(
-        "https://safe-health-care.onrender.com/api/v1/doctor/approveBooking",
+        "http://localhost:5000/api/v1/doctor/approveBooking",
+        // "https://safe-health-care.onrender.com/api/v1/doctor/approveBooking",
         { appointmentId: record._id, status },
         {
           headers: {
