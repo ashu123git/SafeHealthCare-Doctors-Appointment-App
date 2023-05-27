@@ -15,8 +15,8 @@ const Login = () => {
       // To show spinning wheel
       dispatch(showLoading());
       const validCreds = await axios.post(
-        "http://localhost:5000/api/v1/user/login",
-        // "https://safe-health-care.onrender.com/api/v1/user/login",
+        // "http://localhost:5000/api/v1/user/login",
+        "https://safe-health-care.onrender.com/api/v1/user/login",
         values
       );
       window.location.reload();
