@@ -56,7 +56,7 @@ const Footer = () => {
             type="button"
             className="btn btn-primary btn-lg btn-floating mx-2"
             style={{ backgroundColor: "#54456b" }}
-            to="https://twitter.com/home"
+            to="https://github.com/ashu123git/SafeHealthCare-Doctors-Appointment-App"
             // style="background-color: #54456b;"
           >
             here
