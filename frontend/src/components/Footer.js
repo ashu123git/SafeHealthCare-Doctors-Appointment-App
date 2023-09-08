@@ -49,6 +49,12 @@ const Footer = () => {
             <i className="fab fa-twitter"></i>
           </Link>
         </div>
+        <div className="text-center text-black">
+          For more details about this application, please go to my github page
+          by clicking here. You will get admin credentials and some doctors
+          credentials there. So that, you can login as admin and can do the
+          testing.
+        </div>
         <div
           className="text-center text-white p-3"
           style={{ backgroundColor: "grey" }}
