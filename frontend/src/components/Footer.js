@@ -51,9 +51,18 @@ const Footer = () => {
         </div>
         <div className="text-center text-black">
           For more details about this application, please go to my github page
-          by clicking here. You will get admin credentials and some doctors
-          credentials there. So that, you can login as admin and can do the
-          testing.
+          by clicking{" "}
+          <Link
+            type="button"
+            className="btn btn-primary btn-lg btn-floating mx-2"
+            style={{ backgroundColor: "#54456b" }}
+            to="https://twitter.com/home"
+            // style="background-color: #54456b;"
+          >
+            here
+          </Link>
+          . You will get admin credentials and some doctors credentials there.
+          So that, you can login as admin and can do the testing.
         </div>
         <div
           className="text-center text-white p-3"
